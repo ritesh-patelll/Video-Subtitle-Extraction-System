@@ -13,7 +13,7 @@ services:
           type: redis
           property: connectionString
   - type: redis
-    name: humblebee
+    name: celery-redis
     region: singapore
     plan: free # we choose a plan with persistence to ensure tasks are not lost upon restart
     maxmemoryPolicy: noeviction # recommended policy for queues
