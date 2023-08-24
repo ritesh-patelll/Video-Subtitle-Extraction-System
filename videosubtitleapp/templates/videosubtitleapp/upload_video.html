@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecowiser Video Service</title>
+    <!-- Add Bootstrap CSS link for nice looking forms -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Ecowiser Video Service</h1>
+
+        <!-- Upload form -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Upload a Video</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Search form -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Search a Video</h2>
+                <form action="{% url 'search' %}" method="get" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="keyword" required placeholder="Enter keyword...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display search result -->
+        {% if results %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Search Results:</h2>
+                <ul class="list-group">
+                    {% for result in results %}
+                    <li class="list-group-item">Video ID: {{result.video_id}}, Start Time: {{result.start_time}}, End Time: {{result.end_time}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

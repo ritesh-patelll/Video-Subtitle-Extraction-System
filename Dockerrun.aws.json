@@ -1,0 +1,43 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "ContainerDefinitions": [
+    {
+      "Name": "django",
+      "Image": "riteshpatelll/django:tagname",
+      "Essential": true,
+      "Memory": 128,
+      "PortMappings": [
+        {
+          "HostPort": 80,
+          "ContainerPort": 8000
+        }
+      ],
+      "Environment": [
+        {
+          "Name": "DEBUG",
+          "Value": "1"
+        },
+        {
+          "Name": "DJANGO_ALLOWED_HOSTS",
+          "Value": "localhost 127.0.0.1 humblebee.us-west-1.elasticbeanstalk.com"
+        },
+        {
+          "Name": "CELERY_BROKER",
+          "Value": "redis://default:HeibIc2XOwm14V9spFHe@containers-us-west-198.railway.app:5485"
+        },
+        {
+          "Name": "CELERY_BACKEND",
+          "Value": "redis://default:HeibIc2XOwm14V9spFHe@containers-us-west-198.railway.app:5485"
+        }
+      ]
+    },
+    {
+      "Name": "celery",
+      "Image": "riteshpatelll/django:tagname",
+      "Essential": true,
+      "Memory": 128,
+      "Links": ["django"],
+      "Command": ["celery", "-A", "humblebee", "worker", "-l", "info", "-P", "eventlet"]
+    }
+  ]
+}
