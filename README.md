@@ -6,7 +6,7 @@
 
 A Django-based video processing system that automatically extracts subtitles using CCExtractor and indexes them in DynamoDB for fast search capabilities.
 
-<img src="/demo/Video_Subtitle_Extraction_System" alt="GIF" width="100%">
+<img src="/demo/Video_Subtitle_Extraction_System.gif" alt="GIF" width="100%">
 
 ## Key Features
 - 🎥 Video upload and storage in AWS S3
